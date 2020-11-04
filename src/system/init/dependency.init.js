@@ -27,7 +27,7 @@ export default async ({ logger }) => {
   container.loadModules(
     [
       [
-        path.join(__dirname, '../models/*.model.js'),
+        path.join(__dirname, '../../models/*.model.js'),
         { lifetime: Lifetime.SINGLETON, register: asValue },
       ],
     ],
@@ -42,28 +42,28 @@ export default async ({ logger }) => {
   container.loadModules(
     [
       [
-        path.join(__dirname, '../services/*.service.js'),
+        path.join(__dirname, '../../services/*.service.js'),
         {
           lifetime: Lifetime.SCOPED,
           register: asClass,
         },
       ],
       [
-        path.join(__dirname, '../validation/*.validator.js'),
+        path.join(__dirname, '../../validation/*.validator.js'),
         {
           lifetime: Lifetime.SCOPED,
           register: asClass,
         },
       ],
       [
-        path.join(__dirname, '../middleware/*.middleware.js'),
+        path.join(__dirname, '../../middleware/*.middleware.js'),
         {
           lifetime: Lifetime.SCOPED,
           register: asFunction,
         },
       ],
       [
-        path.join(__dirname, '../middleware/*.error.js'),
+        path.join(__dirname, '../../middleware/*.error.js'),
         {
           lifetime: Lifetime.SCOPED,
           register: asFunction,

@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  database:
+    image: 'mongo'
+    container_name: 'database'
+    networks:
+      - backend
+    environment: 
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./init.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./seed.js:/docker-entrypoint-initdb.d/seed.js
+    ports:
+      - 27017:27017
+  app:
+    container_name: 'app'
+    restart: always
+    build: 
+      context: ../
+      dockerfile: docker/Dockerfile
+    depends_on: 
+      - database
+    networks:
+      - backend
+    volumes: 
+      - ../:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 4000:4000
+      - 4001:4001
+    command: npm run dev
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
+  

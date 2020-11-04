@@ -1,0 +1,9 @@
+require: 
+   - '@babel/core'
+   - '@babel/register'
+   - 'mocha-steps'
+   - 'chai/register-expect'
+recursive: true
+timeout: 120000
+global: true
+exit: true

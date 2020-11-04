@@ -1,0 +1,7 @@
+node_modules
+.nyc_output
+build
+docker/node_modules
+docker/mongo-data
+.DS_Store
+.env

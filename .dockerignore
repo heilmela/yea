@@ -1,0 +1,11 @@
+node_modules
+Dockerfile*
+docker-compose*
+.dockerignore
+README.md 
+jsconfig.json 
+.git
+.gitignore
+.nyc_output
+build
+.*

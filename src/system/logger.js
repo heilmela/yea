@@ -3,7 +3,7 @@ import { createLogger, format, transports, config } from 'winston';
 let level, silent;
 switch (process.env.NODE_ENV) {
   case 'production':
-    level = 'warning';
+    level = 'info';
     silent = false;
     break;
   case 'test':

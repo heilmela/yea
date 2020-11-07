@@ -1,4 +1,5 @@
-# YEA - `YE`t `A`nother express template
+# YEA
+### `YE`t `A`nother express template
 This project contains an opinionated little `express.js` template relying on [MongoDB](https://github.com/mongodb/mongo "MongoDB"), [Mongoose](https://github.com/Automattic/mongoose "Mongoose"), [Docker](https://www.docker.com/ "Docker") and [awilix](https://github.com/jeffijoe/awilix "Awilix"). There are plenty of such templates, this one is meant to be yet another needle in the haystack, for those who like express.js, dont need TypeScript and like @decorators, dependency injection and various tools to avoid boilerplate.
 ## Getting Started
 Instructions on how to run, build and configure the project.

@@ -18,11 +18,11 @@ export default ({ app, container }) => {
     next();
   });
   app.use(scopePerRequest(container));
-  const subroutes = loadControllers('../routes/**/*.subroute.js', {
+  const subroutes = loadControllers('../../routes/**/*.subroute.js', {
     cwd: __dirname,
     lifetime: Lifetime.SINGLETON,
   });
-  const routes = loadControllers('../routes/**/*.route.js', {
+  const routes = loadControllers('../../routes/**/*.route.js', {
     cwd: __dirname,
     lifetime: Lifetime.SINGLETON,
   });

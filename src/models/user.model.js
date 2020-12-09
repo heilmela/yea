@@ -3,18 +3,7 @@ import bcrypt from 'bcrypt';
 import Joi from '@hapi/joi';
 
 const userSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    unique: true,
-    default: mongoose.Types.ObjectId,
-  },
-  emails: [String],
-  mainEmailIndex: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
+  email: String,
   password: {
     type: String,
     protected: true,

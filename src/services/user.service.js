@@ -1,27 +1,60 @@
 export default class UserService {
-  constructor({ Invitation, User, tokenService }) {
+  constructor({ User, tokenService, logger }) {
     this.User = User;
-    this.Invitation = Invitation;
     this.tokenService = tokenService;
+    this.logger = logger;
   }
 
   async getUser(params) {
+    console.log(params);
     return this.User.findOne(params).then((response) => {
-      response.toObject();
+      if(response) return response.toObject();
+      if(!response) throw 'Couldnt find User';
     });
   }
 
+  async login(email, password) {
+    const user = await this.User.findOne({
+      email: email,
+    });
+
+    if (!user) {
+      this.logger.debug('Could not find User by email');  
+      throw 'Couldnt find User';
+    } 
+
+    if (user.password) {
+      let isValidPassword = await user.isValidPassword(
+        password,
+      );
+      if (!isValidPassword) {
+        this.logger.debug('Invalid Password');
+        throw 'Invalid Password'
+      } 
+    }
+    user = user.toObject();
+    const auth_token = await this.tokenService.createAuthToken(
+      payload,
+    );
+    const refresh_token = await this.tokenService.createRefreshToken(
+      payload,
+    );
+    user.authToken = auth_token;
+    user.refreshToken = refresh_token;
+    return user;
+  }
+
   async createUser(email, password) {
-    var user = await this.User.findOne({ emails: email });
+    var user = await this.User.findOne({ email: email });
     if (user) return false;
 
     user = new this.User({
-      emails: [email],
-      ...(password ? { password: password } : {}),
+      email: email,
+      password: password
     });
     let validation = user.isValidEmail(email);
     if (validation.error)
-      return res.status(400).send('Invalid email');
+      throw ('Invalid email');
     await user.save();
 
     let payload = this.tokenService.createPayload(user.id);
@@ -31,11 +64,9 @@ export default class UserService {
     const refresh_token = await this.tokenService.createRefreshToken(
       payload,
     );
-
+    user = user.toObject();
     user.authToken = auth_token;
     user.refreshToken = refresh_token;
-    user.userId = user.id;
-
     return user;
   }
 }

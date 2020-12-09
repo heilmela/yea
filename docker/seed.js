@@ -1,7 +1,7 @@
 function get(env) {
     let cmd = run("sh", "-c", `printenv --null ${env} >/tmp/${env}`);
     if (cmd != 0) throw Error(`${env} not found.`)
-    return cat(`/temp/${env}`)
+    return cat(`/tmp/${env}`)
 }
 
 let dbName = get('MONGO_INITDB_DATABASE');

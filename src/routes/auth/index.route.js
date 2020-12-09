@@ -14,8 +14,7 @@ export default class AuthRoute {
     let { email, password } = req.body;
     try {
       const user = await this.userService.login(email, password);
-      let tokens = await this.tokenService.createTokens(user.id);
-      return res.send(tokens);
+      return res.send(user);
     } catch {
       return res.status(500).send('Internal Server Error');
     }

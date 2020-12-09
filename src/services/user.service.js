@@ -14,7 +14,7 @@ export default class UserService {
   }
 
   async login(email, password) {
-    const user = await this.User.findOne({
+    let user = await this.User.findOne({
       email: email,
     });
 

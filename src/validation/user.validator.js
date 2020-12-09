@@ -6,10 +6,8 @@ export default class UserValidator {
     return celebrate({
       [Segments.BODY]: Joi.object().keys({
         id: Joi.string().required(),
-        emails: Joi.array(),
-        mainEmailIndex: Joi.number(),
+        email: Joi.string(),
         password: Joi.string(),
-        groupformations: Joi.array(),
         isLocked: Joi.boolean(),
       }),
     });
@@ -19,10 +17,8 @@ export default class UserValidator {
     return celebrate({
       [Segments.BODY]: Joi.object().keys({
         id: Joi.string(),
-        emails: Joi.array(),
-        mainEmailIndex: Joi.number(),
+        email: Joi.string(),
         password: Joi.string(),
-        groupformations: Joi.array(),
         isLocked: Joi.boolean(),
       }),
     });

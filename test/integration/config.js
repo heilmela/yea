@@ -3,7 +3,7 @@ import supertest from 'supertest';
 import mongoose from 'mongoose';
 import mlog from 'mocha-logger';
 
-import { teardown } from '../data/database';
+import { teardown } from './shared/database';
 
 global.mongoose = mongoose;
 global.agent = supertest(server);

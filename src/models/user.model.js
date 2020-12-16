@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 const userSchema = new mongoose.Schema({
   email: String,

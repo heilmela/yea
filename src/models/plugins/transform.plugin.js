@@ -10,7 +10,9 @@ export default function (schema, options) {
 function transformer(doc, ret, options) {
   delete ret._id;
   delete ret.__v;
-  if(ret?.password) {
-    delete ret.password;
+  if (options.dto) {
+    if (ret?.password) {
+      delete ret.password;
+    }
   }
 }

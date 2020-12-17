@@ -64,7 +64,7 @@ export default class UserService {
     const refresh_token = await this.tokenService.createRefreshToken(
       payload,
     );
-    user = user.toObject();
+    user = user.toObject({dto: true});
     user.authToken = auth_token;
     user.refreshToken = refresh_token;
     return user;
